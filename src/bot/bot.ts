@@ -1,4 +1,5 @@
 import { Bot } from "grammy";
+import startCustomStrategy from "../strategy.js";
 import {
   type WebSocketClient,
   type KatanaPerpsOrderEvent,
@@ -23,6 +24,11 @@ import { registerOrder } from "./commands/order.js";
 import { registerCancel } from "./commands/cancel.js";
 import { registerFarm, getFarmEngine } from "./commands/farm.js";
 import { registerSessionKey } from "./commands/sessionkey.js";
+
+
+// Chang to true if you want to run your custom strategy
+const runCustomStrategy = false
+
 
 export function createBot(): { bot: Bot; ws: WebSocketClient } {
   const bot = new Bot(config.telegramBotToken);
@@ -94,4 +100,9 @@ export function createBot(): { bot: Bot; ws: WebSocketClient } {
   });
 
   return { bot, ws };
+}
+
+
+if (runCustomStrategy) {
+  new startCustomStrategy();
 }

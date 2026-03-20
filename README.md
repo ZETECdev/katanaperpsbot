@@ -158,6 +158,17 @@ The bot connects via WebSocket to receive real-time updates:
 - **Fill notifications** — when orders are filled (suppressed during farming)
 - **Position updates** — when positions change (suppressed during farming)
 
+## Custom Strategy
+
+You can implement your own automated trading strategy by editing the `src/strategy.ts` file. 
+
+To enable your custom strategy:
+1. Open `src/bot/bot.ts`.
+2. Find the variable `const runCustomStrategy = false` near the top of the file.
+3. Change its value to `true`.
+
+Your custom logic defined in the `startCustomStrategy` class will automatically execute when the bot starts in the background.
+
 ## Project Structure
 
 ```
@@ -165,6 +176,7 @@ src/
 ├── index.ts              # Entry point
 ├── config.ts             # Environment config
 ├── types.ts              # Type re-exports from SDK
+├── strategy.ts           # Custom strategy logic
 ├── api/
 │   └── client.ts         # SDK wrapper functions
 ├── bot/
